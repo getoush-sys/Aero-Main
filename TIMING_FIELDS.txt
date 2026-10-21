@@ -1,0 +1,145 @@
+========================================================================
+ Aero — TIMING & ACTION FIELD REFERENCE
+========================================================================
+What every short field name on a timing/action means. Sourced from the
+class files in Game/Timings/ (Timing, AnimationTiming, PartTiming,
+SoundTiming, EffectTiming, Action) and the Edit-Timing form labels.
+
+Format:   key  —  Builder label: what it does
+Booleans default false unless noted. Times are seconds unless "(ms)".
+
+
+========================================================================
+ ACTION  (one scheduled reaction; a timing can have several)
+========================================================================
+_type    — Action Type: what to do (Parry / Dodge / Start Block / etc. — see list below).
+_when    — Action Delay (ms): delay from the start of the attack animation. :when() = seconds.
+hitbox   — Action Hitbox (Length/Width/Height): the Vector3 box checked for this action.
+ihbc     — Ignore Hitbox Check: fire on timing regardless of whether you're in the hitbox.
+name     — Action Name: cosmetic label shown in logs/notifications.
+tp       — time position: module/live-code only, NEVER saved. Scratch field for module logic.
+
+ACTION TYPES (values for _type):
+  Parry              — parry the hit.
+  Dodge              — dodge/roll it.
+  Forced Full Dodge  — commit a full i-frame dodge.
+  Jump               — jump.
+  Start Block        — begin holding block.
+  End Block          — release block (pair with Start Block to block a window).
+  Teleport Up        — teleport upward.
+  Start Slide / End Slide   — begin / end a slide.
+  Start Crouch / End Crouch — begin / end crouch.
+
+
+========================================================================
+ CORE TIMING (shared by all timing types)
+========================================================================
+name     — Timing Name: the timing's display name.
+tag      — Tag: move class — Undefined / Critical / Mantra / M1.
+hitbox   — Hitbox (Length/Width/Height): default box for the timing.
+duih     — Delay Until In Hitbox: wait until you're actually inside the hitbox before reacting.
+fhb      — Forward Hitbox: pushes the hitbox FORWARD by half its depth (Z/2) so it projects out from the attacker instead of centering on them (default TRUE). [verified in Defender.hitbox]
+hso      — Hitbox Shift Offset: shifts the hitbox along its depth axis; positive = backward, negative = forward. [verified in Defender.hitbox]
+aatk     — Allow Attacking: set by escape modules (e.g. the leap/teleport template). Documented as "allow attacking," but NO consumer found in this codebase — currently no effect here.
+htype    — hitbox shape (Enum.PartType): module/live-code only, never saved.
+forced   — hidden: force scheduled tasks to go through no matter what.
+cbm      — internal "created by a module" flag (not saved).
+
+DISTANCE & WINDOWS
+imdd     — Initial Minimum Distance: only defend if the attacker is at least this far.
+imxd     — Initial Maximum Distance: only defend if the attacker is within this far.
+punishable — Punishable Window (s): how early before the hit a defense still counts.
+after    — After Window (s): how late after the scheduled time the action may still fire.
+
+FALLBACKS (used when a parry can't happen; the defender tries dodge, then vent, then block)
+ndfb     — No Dash Fallback: disables the dodge/dash fallbacks (both roll-if-behind AND roll-on-parry-cooldown). [verified]
+nvfb     — No Vent Fallback: disables the vent fallback. [verified]
+nbfb     — No Block Fallback: disables the block fallback. [verified]
+bfht     — Block Fallback Hold Time: how long the block fallback is held; passed to QueuedBlocking (default 0.3). [verified]
+pbfb     — Prefer Block Fallback: documented intent, and weapon modules set it, but NO consumer found in this codebase (the fallback order is hard-coded dodge>vent>block), so it currently has no effect here.
+
+FEINT / GATING
+nfd      — Ignore Feint Detection: don't treat an early-ending animation as a feint.
+uif      — Use Inhale To Identify Feint: cancel the reaction if the attacker's inhale-feint sound plays.
+ibi      — Ignore Block Input Gate: this timing ignores the Block-Input feature's gate.
+iapf     — Ignore Auto Parry Frames: don't skip this even if you have auto-parry frames.
+rsc      — Skip If Recently Self-Cast: skip if you played animation rsaid yourself recently.
+rsaid    — Recent Self-Cast Animation ID: the animation id watched by rsc.
+rsaw     — Recent Self-Cast Window (s): how recently rsaid counts (default 4.0).
+
+MODULE-DRIVEN
+umoa     — Behavior (Use Module Over Actions): run the module instead of static actions.
+smod     — Module: the selected module's name.
+smn      — Skip Module Notification.
+srpn     — Skip Repeat Notification.
+
+REPEATING ATTACKS
+rpue     — Repeat Parry Until End: keep parrying a looping/sustained move until it ends.
+_rsd     — Repeat Start Delay (ms): delay before the first repeat. :rsd() = seconds.
+_rpd     — Repeat Parry Delay (ms): delay between repeats. :rpd() = seconds.
+
+
+========================================================================
+ ANIMATION TIMING  (id field: _id = Animation ID)
+========================================================================
+_id      — Animation ID (rbxassetid://...).
+ha       — Hyperarmor Flag: per the class doc, whether the move can be cancelled by a hit; auto-set TRUE for Critical-tagged timings. Marked/saved, but NO behavioral consumer found in this codebase.
+iae      — Ignore Animation End: don't cancel the reaction when the animation ends.
+mat      — Max Animation Timeout (ms): cap for iae waiting (default 2000).
+ieae     — Ignore Early Animation End.
+
+PREDICTION (make the parry account for the enemy moving/turning + lag)
+pfh      — Predict Facing Hitboxes: also check where the attacker will FACE — but only while they're actively turning.
+ffh      — Force Facing Hitbox (hidden): same facing prediction as pfh, but ALWAYS on (assumes they face you, even if not turning).
+dp       — Disable Prediction: turn position prediction off for this timing.
+pfht     — Extrapolation Time (s): how far ahead prediction projects motion (default 0.15).
+phd      — Past Hitbox Detection: also check the attacker's recent PAST positions (catches laggy hits).
+phds     — History Seconds: how far back phd looks.
+imb      — Ignore Megalodaunt Block (hidden).
+
+
+========================================================================
+ PART TIMING  (id field: pname = Part name)
+========================================================================
+pname    — Part name (the workspace part this timing matches).
+uhc      — Use Hitbox CFrame: use the part's CFrame for the hitbox check.
+
+
+========================================================================
+ SOUND TIMING  (id field: _id = Sound ID)
+========================================================================
+_id      — Sound ID (rbxassetid://...).
+alp      — Allow Local Player: allow the local player to be counted/hit.
+(rpue / _rsd / _rpd also apply — see REPEATING ATTACKS above.)
+
+
+========================================================================
+ EFFECT TIMING  (id field: ename = Effect name)
+========================================================================
+ename    — Effect name (the replicated effect class this timing matches).
+ilp      — Ignore Local Player.
+flp      — Force Local Player.
+
+
+========================================================================
+ NOTES
+========================================================================
+- Each timing type is keyed by its own id: Animation/Sound use _id,
+  Part uses pname, Effect uses ename.
+- "self" fields inside a module (self.entity, self.owner, self.track,
+  self.data, self.part) are the live objects the defender passes in —
+  they are NOT saved timing fields.
+- Getters: :when() (Action ms->s), :rsd()/:rpd() (Timing ms->s).
+
+VERIFICATION STATUS
+- Every field name/expansion is quoted from the class files' own doc
+  comments (Game/Timings/*.lua) and the Edit-Timing form labels.
+- "[verified]" = I also read the code that CONSUMES the field and
+  confirmed its runtime behavior (fhb, hso, ndfb, nvfb, nbfb, bfht, ffh,
+  ihbc). Everything else is the documented meaning without a behavior trace.
+- aatk, pbfb, ha are documented and set by modules/tags, but have NO
+  consumer in this codebase, so their described effect is intent, not
+  confirmed behavior here.
+- (Fixed) Defender.lua previously read a typo'd `timing.nfdb` (undefined,
+  always nil); corrected to `ndfb`, so No Dash Fallback now actually
+  applies on the parry/deflect path too.

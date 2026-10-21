@@ -1,0 +1,5 @@
+WARNING: Non-literal require found in 'Aero' at 454:53
+WARNING: Non-literal require found in 'Aero' at 382:53
+WARNING: Non-literal require found in 'Features/Automation/AutoSaramed' at 97:17
+WARNING: Non-literal require found in 'Features/Automation/Objects/General' at 65:15
+    Error: Failed to bundle resolved module Aero

@@ -1,0 +1,17 @@
+# Build output (the published, ready-to-run build is committed at dist/Aero.lua)
+Output/
+
+# Python cache / editor state
+__pycache__/
+*.pyc
+.vscode/
+
+# Local timing sync history & working backups (not source)
+Timings/patch_*.json
+Timings/timing.sync.last.json
+TimingHistory/
+WorkspaceTimingBackup/
+Personal
+
+# Deploy token for deploy.py (never commit a credential)
+.deploy_token

@@ -1,0 +1,5 @@
+# Bundle
+luabundler bundle Main.Lua -p "./?.lua" -p "./?/init.lua" -p "./lib/?.lua" -o Output\Bundled.lua
+
+python Preprocessor.py --timing-file "C:\Users\jpc\AppData\Local\Volt\workspace\Aero-Rewrite-Timings\truth.txt"
+python Preprocessor.py --timing-file "C:\Users\jo\AppData\Local\synapse z\workspace\Aero-Rewrite-Timings\truth.txt"

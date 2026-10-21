@@ -1,0 +1,128 @@
+---@class Maid
+local Maid = {}
+Maid.__type = "maid"
+
+---@return Maid
+Maid.new = LPH_NO_VIRTUALIZE(function()
+	return setmetatable({
+		_tasks = {},
+	}, Maid)
+end)
+
+Maid.__index = LPH_NO_VIRTUALIZE(function(self, index)
+	if Maid[index] then
+		return Maid[index]
+	else
+		return self._tasks[index]
+	end
+end)
+
+---@param index any
+---@param newTask any
+Maid.__newindex = LPH_NO_VIRTUALIZE(function(self, index, newTask)
+	if Maid[index] ~= nil then
+		return
+	end
+
+	local tasks = self._tasks
+	local oldTask = tasks[index]
+
+	if oldTask == newTask then
+		return
+	end
+
+	tasks[index] = newTask
+
+	if oldTask then
+		if typeof(oldTask) == "thread" then
+			return coroutine.status(oldTask) == "suspended" and task.cancel(oldTask) or nil
+		end
+
+		if type(oldTask) == "function" then
+			oldTask()
+		elseif typeof(oldTask) == "RBXScriptConnection" then
+			oldTask:Disconnect()
+		elseif typeof(oldTask) == "Instance" and oldTask:IsA("Tween") then
+			oldTask:Pause()
+			oldTask:Cancel()
+			oldTask:Destroy()
+		elseif oldTask.Destroy then
+			oldTask:Destroy()
+		elseif oldTask.Remove then
+			oldTask:Remove()
+		elseif oldTask.detach then
+			oldTask:detach()
+		end
+	end
+end)
+
+---@param task any
+---@return any
+Maid.mark = LPH_NO_VIRTUALIZE(function(self, task)
+	self:add(task)
+	return task
+end)
+
+---@param task any
+---@return number
+Maid.add = LPH_NO_VIRTUALIZE(function(self, task)
+	if not task then
+		return error("task cannot be false or nil", 2)
+	end
+
+	local taskId = #self._tasks + 1
+	self[taskId] = task
+
+	return taskId
+end)
+
+---@param taskId number
+Maid.removeTask = LPH_NO_VIRTUALIZE(function(self, taskId)
+	local tasks = self._tasks
+	tasks[taskId] = nil
+end)
+
+Maid.clean = LPH_NO_VIRTUALIZE(function(self)
+	local tasks = self._tasks
+
+	for index, task in pairs(tasks) do
+		if typeof(task) == "RBXScriptConnection" then
+			tasks[index] = nil
+			pcall(task.Disconnect, task)
+		end
+	end
+
+	local index, _task = next(tasks)
+
+	while _task ~= nil do
+		tasks[index] = nil
+
+		if typeof(_task) == "thread" then
+			if coroutine.status(_task) == "suspended" then
+				pcall(task.cancel, _task)
+			end
+		else
+			pcall(function()
+				if type(_task) == "function" then
+					_task()
+				elseif typeof(_task) == "RBXScriptConnection" then
+					_task:Disconnect()
+				elseif typeof(_task) == "Instance" and _task:IsA("Tween") then
+					_task:Pause()
+					_task:Cancel()
+					_task:Destroy()
+				elseif _task.Destroy then
+					_task:Destroy()
+				elseif _task.Remove then
+					_task:Remove()
+				elseif _task.detach then
+					_task:detach()
+				end
+			end)
+		end
+
+		index, _task = next(tasks)
+	end
+end)
+
+return Maid

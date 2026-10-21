@@ -1,0 +1,127 @@
+[deploy] bundling...
+[deploy] $ luabundler bundle Main.lua -p "./?.lua" -p "./?/init.lua" -p "./lib/?.lua" -o "Output/Bundled.lua"
+python : WARNING: Non-literal require found in 'Features/Automation/AutoSaramed' at 99:17
+At line:1 char:357
++ ... Aero-main'; python deploy.py -m "fix teleport use-after-free (Kernel, ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: Non-li...ramed' at 99:17:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: Non-literal require found in 'Features/Automation/Objects/General' at 65:15
+WARNING: Non-literal require found in 'Features/Automation/Objects/AutomationStruct' at 255:10
+WARNING: Non-literal require found in 'Features/Automation/Objects/AutomationStruct' at 150:21
+WARNING: Non-literal require found in 'Features/Automation/Objects/AutomationFeatures' at 40:29
+WARNING: Non-literal require found in 'Utility/Finder' at 149:40
+WARNING: Non-literal require found in 'Utility/Finder' at 125:40
+WARNING: Non-literal require found in 'Game/InputClient' at 1020:40
+WARNING: Non-literal require found in 'Game/InputClient' at 912:40
+WARNING: Non-literal require found in 'Game/InputClient' at 888:45
+WARNING: Non-literal require found in 'Game/InputClient' at 680:59
+WARNING: Non-literal require found in 'Game/InputClient' at 489:40
+WARNING: Non-literal require found in 'Game/InputClient' at 329:40
+WARNING: Non-literal require found in 'Game/InputClient' at 291:40
+WARNING: Non-literal require found in 'Game/InputClient' at 243:40
+WARNING: Non-literal require found in 'Game/InputClient' at 134:50
+WARNING: Non-literal require found in 'Game/InputClient' at 65:40
+WARNING: Non-literal require found in 'Game/InputClient' at 41:16
+WARNING: Non-literal require found in 'Features/Automation/AutoMooneyrie' at 80:17
+WARNING: Non-literal require found in 'Features/Automation/AutoDuke' at 115:17
+WARNING: Non-literal require found in 'Features/Automation/AutoAuthority' at 105:17
+WARNING: Non-literal require found in 'Features/Automation/AutoFerryman' at 1694:45
+WARNING: Non-literal require found in 'Features/Automation/AutoVoI' at 485:45
+WARNING: Non-literal require found in 'Features/Automation/AutoVoI' at 361:45
+WARNING: Non-literal require found in 'Features/Automation/AutoTo1' at 361:45
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 1592:40
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 1514:40
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 1256:40
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 1032:26
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 979:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 946:26
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 921:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 766:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 695:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 648:62
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 450:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 361:61
+WARNING: Non-literal require found in 'Features/Combat/Defense' at 313:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 505:42
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 420:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 404:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 373:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 325:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 286:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 263:40
+WARNING: Non-literal require found in 'Features/Combat/StateListener' at 192:32
+WARNING: Non-literal require found in 'Game/QueuedBlocking' at 137:40
+WARNING: Non-literal require found in 'Game/QueuedBlocking' at 65:40
+WARNING: Non-literal require found in 'Game/EffectDispatcher' at 82:16
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1838:61
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1755:64
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1639:61
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1522:61
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1424:62
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 1099:61
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 818:40
+WARNING: Non-literal require found in 'Features/Combat/Objects/Defender' at 443:40
+WARNING: Non-literal require found in 'Features/Combat/Objects/AnimatorDefender' at 2900:40
+WARNING: Non-literal require found in 'Features/Combat/Objects/AnimatorDefender' at 371:40
+WARNING: Non-literal require found in 'Features/Game/Teleport' at 405:41
+WARNING: Non-literal require found in 'Features/Game/Removal' at 404:41
+WARNING: Non-literal require found in 'Features/Game/Removal' at 150:41
+WARNING: Non-literal require found in 'Features/Visuals/Visuals' at 2078:59
+WARNING: Non-literal require found in 'Features/Exploits/Exploits' at 167:41
+WARNING: Non-literal require found in 'Features/Game/Movement' at 602:64
+WARNING: Non-literal require found in 'Features/Game/Movement' at 408:62
+WARNING: Non-literal require found in 'Features/Game/Movement' at 377:62
+WARNING: Non-literal require found in 'Features/Game/Movement' at 335:62
+WARNING: Non-literal require found in 'Features/Game/Movement' at 167:64
+WARNING: Non-literal require found in 'Features/Game/Movement' at 126:41
+WARNING: Non-literal require found in 'Features/Game/Movement' at 80:62
+WARNING: Non-literal require found in 'Menu/UtilityTab' at 28:46
+WARNING: Non-literal require found in 'Features/Combat/SilentAim' at 56:51
+WARNING: Non-literal require found in 'Features/Combat/AutoDustlunge' at 36:37
+WARNING: Non-literal require found in 'Game/Hooking' at 1123:61
+WARNING: Non-literal require found in 'Game/Hooking' at 1007:34
+WARNING: Non-literal require found in 'Game/Hooking' at 972:40
+WARNING: Non-literal require found in 'Game/Hooking' at 841:62
+WARNING: Non-literal require found in 'Game/Hooking' at 261:41
+WARNING: Non-literal require found in 'Game/Hooking' at 126:40
+[deploy] bundled (2244519 bytes)
+[deploy] preprocessing...
+[deploy] $ C:\msys64\ucrt64\bin\python.exe Preprocessor.py -i Output/Bundled.lua --timing-file C:\Users\user\Downloads\Aero\Aero-main\Timings\truth.txt
+Discovered 164 __bundle_register call(s).
+First modules: __root, Aero, Features/Automation/AutoSaramed, Features/Automation/Objects/Teleports, Features/Automation/Objects/General, Game/Timings/SaveManager, Utility/Serializer, Utility/String, Utility/Deserializer, Utility/DeserializerStream ...
+Inlined macro NUM at line 15746: hb.X
+Inlined macro NUM at line 15747: hb.Y
+Inlined macro NUM at line 15748: hb.Z
+Inlined macro NUM at line 15773: out.imxd
+Inlined macro NUM at line 15777: out.imdd
+Inlined macro NUM at line 15781: out.rpd
+Inlined macro NUM at line 15783: out.rsd
+Inlined macro NUM at line 15808: decoded.when
+Inlined macro STR at line 15753: out.name
+Inlined macro STR at line 15757: out.smod
+Inlined macro STR at line 15761: out._id
+Inlined macro STR at line 15765: out.pname
+Inlined macro STR at line 15769: out.ename
+Inlined macro STR at line 15800: decoded._type
+Inlined macro STR at line 15804: decoded.name
+Module diff vs. previous snapshot: no changes detected.
+Timing diff vs. previous snapshot: no changes detected.
+Inlined timing data into 4 container load call(s).
+Scrambled 803 timings / 834 actions (anim=712t/717a, part=66t/98a, sound=9t/6a, effect=16t/13a).
+Discovered 205 internal module(s), 6 internal global(s).
+Replaced INTERNAL_MODULES: True, INTERNAL_GLOBALS: True
+Wrote: C:\Users\user\Downloads\Aero\Aero-main\Output\Preprocessed_Bundled.lua
+[deploy] preprocessed (4392130 bytes)
+[deploy] published dist/Aero.lua (4392130 bytes)
+warning: in the working copy of 'dist/Aero.lua', LF will be replaced by CRLF the next time Git touches it
+[deploy] $ git commit -m fix teleport use-after-free (Kernel,2090 candidate): drop getgc'd Sprint/Roll closure caches on LocalPlayer.OnTeleport Started/InProgress so debug.getupvalues never reads freed Proto memory across a DataModel swap; bump cacheSession, re-prime on Failed, disconnect in detach
+[main a787e31] fix teleport use-after-free (Kernel,2090 candidate): drop getgc'd Sprint/Roll closure caches on LocalPlayer.OnTeleport Started/InProgress so debug.getupvalues never reads freed Proto memory across a DataModel swap; bump cacheSession, re-prime on Failed, disconnect in detach
+ 4 files changed, 187 insertions(+)
+ create mode 100644 deploy_teleport.log
+[deploy] committed
+To https://github.com/PlanetCatYT/Aero.git
+   0dc87d3..a787e31  main -> main
+[deploy] pushed to PlanetCatYT/Aero@main
+[deploy] done
